@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShadowsCollide", "ShadowsCollide\ShadowsCollide.vcxproj", "{FC2522E5-7873-4FCA-8881-A47887F01F14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Debug|x64.ActiveCfg = Debug|x64
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Debug|x64.Build.0 = Debug|x64
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Debug|x86.ActiveCfg = Debug|Win32
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Debug|x86.Build.0 = Debug|Win32
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Release|x64.ActiveCfg = Release|x64
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Release|x64.Build.0 = Release|x64
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Release|x86.ActiveCfg = Release|Win32
+		{FC2522E5-7873-4FCA-8881-A47887F01F14}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FBA9F02-5D57-4688-8260-42FAB6616AB2}
+	EndGlobalSection
+EndGlobal
