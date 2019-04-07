@@ -3,6 +3,8 @@
 
 #include "pch.h"
 #include "Vector.h"
+#include "AABBTest.h"
+#include "Collision.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -119,10 +121,23 @@ bool isAABB(const vector<Vector> vectors)
 
 bool isConvexPolygon(const vector<Vector> vectors)
 {
+	// todo
 	bool isConvex = false;
 
+	vector<double> slopes;
 	for (int i = 0; i < vectors.size(); i++)
 	{
+		int maxIndex = vectors.size() - 1;		
+		int first = i;
+		int last = first == 0 ? maxIndex : first - 1;
+		int second = first == maxIndex ? 0 : first + 1;
+
+		//double slope1 = countSlope(vectors.at(last), vectors.at(first));
+		double slope2 = countSlope(vectors.at(first), vectors.at(second));
+		
+		//slopes.push_back(slope1);
+		slopes.push_back(slope2);
+
 		// figure this out..????
 		/*int vectorsLastIndex = vectors.size() - 1;
 		int middlePoint = i + 1;
@@ -156,11 +171,13 @@ bool isConvexPolygon(const vector<Vector> vectors)
 		float theta = acos((dx21*dx31 + dy21 * dy31) / (m12 * m13));*/
 	}
 
+	slopes;
 	return isConvex;
 }
 
 bool isOBB(const vector<Vector> vectors)
 {
+	// todo
 	bool isOBB = false;
 	   
 	return isOBB;
@@ -168,12 +185,16 @@ bool isOBB(const vector<Vector> vectors)
 
 void validateVectors(string vectors)
 {
-
+	// todo
 }
 
 int main()
 {
 	// -2,-2 -2,3 3,3 3,-2
+	// 5,5 5,15 18.12,15 18.12,5
+	// -2,2 3,2 3,-1 -2,-1
+	// -1.5,6.64 -1.5,-1.95 -5.5,-1.95 -5.5,6.64
+	// -12.86,21.78 -12.86,37.37 -34.39,37.37 -34.39,21.78
 	string vectorsString;
     cout << "Please enter a list of two or more X and Y vectors." << endl; 
 	cout << "Vectors must form a convex polygon." << endl;
@@ -186,13 +207,27 @@ int main()
 	int vectorsCount = getArraySizeFromVectors(vectorsString);
 
 	if (vectorsCount > 1) {
-		const vector<Vector> vectors = mutateVectorsStringToArray(vectorsString);
+		const vector<Vector> polygon1 = mutateVectorsStringToArray(vectorsString);
 
-		isConvexPolygon(vectors);
-
-		if (isAABB(vectors))
+		if (isAABB(polygon1))
 		{
 			cout << "Polygon is quadrangle" << endl;
+			cout << "Please enter another." << endl;
+			cout << "Vectors: ";
+
+			getline(cin, vectorsString);
+
+			const vector<Vector> polygon2 = mutateVectorsStringToArray(vectorsString);
+
+			if (isAABB(polygon2))
+			{
+				Collision collisionResult = AABBTest::testAABBCollision(polygon1, polygon2);
+
+				string collision = collisionResult.collision == true ? "TRUE" : "FALSE";
+
+				cout << "Collision: " << collision << endl;
+				cout << "Distance: " << collisionResult.distance << endl;
+			}
 		}
 		else
 		{
