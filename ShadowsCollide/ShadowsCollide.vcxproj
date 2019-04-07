@@ -152,13 +152,21 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AABBTest.h" />
+    <ClInclude Include="ArithmeticalOperations.h" />
+    <ClInclude Include="Circle.h" />
+    <ClInclude Include="CircleTest.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AABBTest.cpp" />
+    <ClCompile Include="ArithmeticalOperations.cpp" />
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="CircleTest.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
