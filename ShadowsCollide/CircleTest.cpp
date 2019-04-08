@@ -4,17 +4,18 @@
 #include "Vector.h"
 #include "Collision.h"
 #include "AABBTest.h"
+#include "Circle.h"
+#include "Line.h"
 #include "CircleTest.h"
 
 using namespace std;
 
-Collision CircleTest::testCircleCollision(vector<Vector> polygon1, vector<Vector> polygon2)
+Collision CircleTest::testCircleCollision(Circle circle1, Circle circle2)
 {
 	Collision collision;
-	collision.collision = false;
-	collision.distance = NULL;
-
-	//todo
+	Line separatingLine(circle1.center(), circle2.center());
+	collision.distance = separatingLine.length;
+	collision.collision = circle1.radius() + circle2.radius() < separatingLine.length;
 
 	return collision;
 }
