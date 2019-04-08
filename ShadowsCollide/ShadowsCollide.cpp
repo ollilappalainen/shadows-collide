@@ -5,6 +5,9 @@
 #include "Vector.h"
 #include "AABBTest.h"
 #include "Collision.h"
+#include "ArithmeticalOperations.h"
+#include "Mutations.h"
+#include "Circle.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -18,60 +21,6 @@ int getArraySizeFromVectors(const string vectorString)
 	size_t arraySize = count(vectorString.begin(), vectorString.end(), ' ') + 1;
 
 	return arraySize;
-}
-
-const Vector mutateStringToVector(const string vectorString)
-{
-	Vector vect;	
-	vect.x = NULL;
-	vect.y = NULL;
-
-	stringstream ss(vectorString);
-
-	double i;
-
-	while (ss >> i)
-	{
-		vect.x == NULL ? vect.x = i : vect.y = i;
-
-		if (ss.peek() == ',')
-		{
-			ss.ignore();
-		}
-	}
-
-	return vect;
-}
-
-const vector<Vector> mutateVectorsStringToArray(const string vectorString)
-{
-	vector<Vector> vectors;
-	stringstream ss(vectorString);
-	string i;
-	vector<string> vectorTemp;
-
-	while (getline(ss, i, ' '))
-	{
-		vectors.push_back(mutateStringToVector(i));
-	}
-
-	return vectors;
-}
-
-double countDistance(Vector p, Vector q)
-{
-	return (p.x - q.x) * (p.x - q.x) + (p.y - q.y) * (p.y - q.y);
-}
-
-double countSlope(Vector v1, Vector v2)
-{
-	double dx, dy, slope;
-
-	dx = v2.x - v1.x;
-	dy = v2.y - v1.y;
-	slope = dy / dx;
-
-	return slope;
 }
 
 bool isAABB(const vector<Vector> vectors)
@@ -88,19 +37,19 @@ bool isAABB(const vector<Vector> vectors)
 		Vector vect4 = vectors.at(3);
 
 		// Check if opposite sides of quadrangle are same length
-		double dist12 = countDistance(vect1, vect2);
-		double dist34 = countDistance(vect3, vect4);
-		double dist23 = countDistance(vect2, vect3);
-		double dist41 = countDistance(vect4, vect1);
+		double dist12 = ArithmeticalOperations::distanceOfPoints(vect1, vect2);
+		double dist34 = ArithmeticalOperations::distanceOfPoints(vect3, vect4);
+		double dist23 = ArithmeticalOperations::distanceOfPoints(vect2, vect3);
+		double dist41 = ArithmeticalOperations::distanceOfPoints(vect4, vect1);
 
 		if (dist12 == dist34 && dist23 == dist41) {
 			// Check if slopes are 0
 			double slope1, slope2, slope3, slope4;
 
-			slope1 = countSlope(vect1, vect2);
-			slope2 = countSlope(vect2, vect3);
-			slope3 = countSlope(vect3, vect4);
-			slope4 = countSlope(vect4, vect1);
+			slope1 = ArithmeticalOperations::calculateSlope(vect1, vect2);
+			slope2 = ArithmeticalOperations::calculateSlope(vect2, vect3);
+			slope3 = ArithmeticalOperations::calculateSlope(vect3, vect4);
+			slope4 = ArithmeticalOperations::calculateSlope(vect4, vect1);
 
 			// If opposite slopes are same and all of them are 0
 			isAABB = fabs(slope1) == fabs(slope3) && 
@@ -132,8 +81,8 @@ bool isConvexPolygon(const vector<Vector> vectors)
 		int last = first == 0 ? maxIndex : first - 1;
 		int second = first == maxIndex ? 0 : first + 1;
 
-		//double slope1 = countSlope(vectors.at(last), vectors.at(first));
-		double slope2 = countSlope(vectors.at(first), vectors.at(second));
+		//double slope1 = ArithmeticalOperations::calculateSlope(vectors.at(last), vectors.at(first));
+		double slope2 = ArithmeticalOperations::calculateSlope(vectors.at(first), vectors.at(second));
 		
 		//slopes.push_back(slope1);
 		slopes.push_back(slope2);
@@ -190,11 +139,6 @@ void validateVectors(string vectors)
 
 int main()
 {
-	// -2,-2 -2,3 3,3 3,-2
-	// 5,5 5,15 18.12,15 18.12,5
-	// -2,2 3,2 3,-1 -2,-1
-	// -1.5,6.64 -1.5,-1.95 -5.5,-1.95 -5.5,6.64
-	// -12.86,21.78 -12.86,37.37 -34.39,37.37 -34.39,21.78
 	string vectorsString;
     cout << "Please enter a list of two or more X and Y vectors." << endl; 
 	cout << "Vectors must form a convex polygon." << endl;
@@ -206,8 +150,19 @@ int main()
 
 	int vectorsCount = getArraySizeFromVectors(vectorsString);
 
+	//-----
+	//test start
+	//-----
+
+	string testString = "-2.32,2.8 -1.72,3.1 -1.45,3.72 -1.64,4.36 -2.2,4.73 -2.87,4.65 -3.33,4.16 -3.37,3.49 -2.97,2.96";
+	vector<Vector> testPolygon = Mutations::mutateVectorsStringToStdVector(testString);
+	Circle testCircle(testPolygon);
+	//-----
+	//test end
+	//-----
+
 	if (vectorsCount > 1) {
-		const vector<Vector> polygon1 = mutateVectorsStringToArray(vectorsString);
+		const vector<Vector> polygon1 = Mutations::mutateVectorsStringToStdVector(vectorsString);
 
 		if (isAABB(polygon1))
 		{
@@ -217,7 +172,7 @@ int main()
 
 			getline(cin, vectorsString);
 
-			const vector<Vector> polygon2 = mutateVectorsStringToArray(vectorsString);
+			const vector<Vector> polygon2 = Mutations::mutateVectorsStringToStdVector(vectorsString);
 
 			if (isAABB(polygon2))
 			{

@@ -17,6 +17,7 @@ private:
 	void setSlope(double);
 	void setCenter(Vector);
 	void setLength(double);
+	Vector calculateCenter(Vector, Vector);
 public:
 	Line(Vector p1, Vector p2);
 	double slope();

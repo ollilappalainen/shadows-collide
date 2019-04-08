@@ -11,8 +11,10 @@ Line::Line(Vector p1, Vector p2)
 {
 	double slope = ArithmeticalOperations::calculateSlope(p1, p2);
 	double length = ArithmeticalOperations::distanceOfPoints(p1, p2);
+	Vector center = calculateCenter(p1, p2);
 	setSlope(slope);
 	setLength(length);
+	setCenter(center);
 }
 
 void Line::setSlope(double slope)
@@ -45,4 +47,14 @@ Vector Line::center()
 	return _center;
 }
 
+Vector Line::calculateCenter(Vector p1, Vector p2)
+{
+	double xDifference = p1.x - p2.x;
+	double yDifference = p1.y - p2.y;
 
+	Vector center;
+	center.x = xDifference / 2;
+	center.y = yDifference / 2;
+
+	return center;
+}

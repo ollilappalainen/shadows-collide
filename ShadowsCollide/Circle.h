@@ -11,10 +11,15 @@ class Circle
 private:
 	vector<Vector> _polygon;
 	Vector _center;
-	Vector calculateCenter(vector<Vector> polygon);
+	double _radius;
+	Vector calculateCenter();
+	double calculateRadius();
 	void setCenter(Vector);
+	void setRadius(double);
+	void setPolygon(vector<Vector>);
 
 public:
 	Circle(vector<Vector> polygon);
 	Vector center();
+	double radius();
 };
