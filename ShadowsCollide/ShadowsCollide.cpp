@@ -8,6 +8,7 @@
 #include "ArithmeticalOperations.h"
 #include "Mutations.h"
 #include "Circle.h"
+#include "CircleTest.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -152,12 +153,17 @@ int main()
 
 	//-----
 	//test start
-	//	TEST COLLISION!!
+	//	TEST CIRCLE COLLISION!!
 	//-----
-
-	string testString = "-2.32,2.8 -1.72,3.1 -1.45,3.72 -1.64,4.36 -2.2,4.73 -2.87,4.65 -3.33,4.16 -3.37,3.49 -2.97,2.96";
+	string testString = "1.64,4.9 2.34,5.53 2.38,6.46 1.76,7.16 0.82,7.2 0.13,6.58 0.08,5.64 0.71,4.95";
 	vector<Vector> testPolygon = Mutations::mutateVectorsStringToStdVector(testString);
 	Circle testCircle(testPolygon);
+
+	string secondTest = "6.13,1.64 6.75,2.53 6.74,3.62 6.08,4.49 5.04,4.81 4.01,4.46 3.39,3.57 3.4,2.48 4.06,1.61 5.1,1.29";
+	vector<Vector> testPolygon2 = Mutations::mutateVectorsStringToStdVector(secondTest);
+	Circle testCircle2(testPolygon2);
+
+	Collision collision = CircleTest::testCircleCollision(testCircle, testCircle2);
 	//-----
 	//test end
 	//-----

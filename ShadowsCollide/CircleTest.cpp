@@ -14,8 +14,9 @@ Collision CircleTest::testCircleCollision(Circle circle1, Circle circle2)
 {
 	Collision collision;
 	Line separatingLine(circle1.center(), circle2.center());
-	collision.distance = separatingLine.length;
-	collision.collision = circle1.radius() + circle2.radius() < separatingLine.length;
+	double radiusTotal = circle1.radius() + circle2.radius();
+	collision.distance = separatingLine.length() - radiusTotal;
+	collision.collision = radiusTotal > separatingLine.length();
 
 	return collision;
 }
