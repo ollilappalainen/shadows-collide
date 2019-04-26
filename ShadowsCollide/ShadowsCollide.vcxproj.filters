@@ -42,6 +42,12 @@
     <ClInclude Include="Mutations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SATTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConvexPolygon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mutations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConvexPolygon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SATTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -159,6 +159,8 @@
     <ClInclude Include="Line.h" />
     <ClInclude Include="Mutations.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ConvexPolygon.h" />
+    <ClInclude Include="SATTest.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +177,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ConvexPolygon.cpp" />
+    <ClCompile Include="SATTest.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="ShadowsCollide.cpp" />
   </ItemGroup>

@@ -9,6 +9,7 @@
 #include "Mutations.h"
 #include "Circle.h"
 #include "CircleTest.h"
+#include "ConvexPolygon.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -164,6 +165,13 @@ int main()
 	Circle testCircle2(testPolygon2);
 
 	Collision collision = CircleTest::testCircleCollision(testCircle, testCircle2);
+
+	//-----
+	// CONVEX POLYGON TEST
+	//-----
+	string convexPolyString = "9.36,1.74 11.2,3.72 9.16,5.27 14.17,5.3 11.76,2.66 13.64,1.77";
+	vector<Vector> convexPolygon = Mutations::mutateVectorsStringToStdVector(convexPolyString);
+	bool isConvex = ConvexPolygon::testConvexity(convexPolygon);
 	//-----
 	//test end
 	//-----
