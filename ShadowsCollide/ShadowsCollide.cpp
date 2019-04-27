@@ -148,9 +148,9 @@ int main()
 	cout << "Example: -4.46,12.71 2.61,12.52 5.21,10.57 -3.46,8.71" << endl;
 	cout << "Press CTRL + C to end program." << endl;
 	cout << "Vectors: ";
-	getline(cin, vectorsString);
+	//getline(cin, vectorsString);
 
-	int vectorsCount = getArraySizeFromVectors(vectorsString);
+	//int vectorsCount = getArraySizeFromVectors(vectorsString);
 
 	//-----
 	//test start
@@ -169,13 +169,13 @@ int main()
 	//-----
 	// CONVEX POLYGON TEST
 	//-----
-	string convexPolyString = "9.36,1.74 11.2,3.72 9.16,5.27 14.17,5.3 11.76,2.66 13.64,1.77";
+	string convexPolyString = "11.56,7.57 10.97,11.86 7.97,12.68 6.69,7.64";
 	vector<Vector> convexPolygon = Mutations::mutateVectorsStringToStdVector(convexPolyString);
 	bool isConvex = ConvexPolygon::testConvexity(convexPolygon);
 	//-----
 	//test end
 	//-----
-
+	int vectorsCount = 3;
 	if (vectorsCount > 1) {
 		const vector<Vector> polygon1 = Mutations::mutateVectorsStringToStdVector(vectorsString);
 

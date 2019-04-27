@@ -32,14 +32,14 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 		Line side(p1, p2);
 
 		// Check if all points are at the same side of line
-		vector<double> vectorsYOnLine;
+		vector<double> yVectorsOnLine;
 
 		for (int a = 0; a < polygon.size(); a++)
 		{
 			Vector p = polygon.at(a);
-			double pointOnLine = side.slope() * p.x + p1.y;			
+			double y = side.slope() * (p.x - p1.x) + p1.y;			
 
-			vectorsYOnLine.push_back(pointOnLine);		
+			yVectorsOnLine.push_back(y);		
 		}		
 
 		//Count amount of smaller, bigger and equal Y axis values on line
@@ -47,7 +47,7 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 		int countOfBigger = 0;
 		int countOfEqual = 0;
 		
-		for (auto& yPos : vectorsYOnLine)
+		for (auto& yPos : yVectorsOnLine)
 		{
 			if (yPos > p1.y)
 			{
@@ -65,8 +65,10 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 
 		// If smalle and equal sum or bigger and equal sum are the size of all the points
 		// We can expect that all the points are on the same side of line
-		if (countOfSmaller + countOfEqual == vectorsYOnLine.size() ||
-			countOfBigger + countOfEqual == vectorsYOnLine.size())
+		int smallerYValues = countOfSmaller + countOfEqual;
+		int biggerYValues = countOfBigger + countOfEqual;
+
+		if (smallerYValues == yVectorsOnLine.size() || biggerYValues == yVectorsOnLine.size())
 		{
 			isConvex = true;
 		}
