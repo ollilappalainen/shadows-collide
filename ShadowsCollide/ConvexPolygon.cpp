@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <iostream>
 #include <vector>
+#include <stdexcept>
 #include "Vector.h"
 #include "Line.h"
 #include "ConvexPolygon.h"
@@ -31,7 +32,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 		Vector p2 = polygon.at(next);
 		Line side(p1, p2);
 
-		// Check if all points are at the same side of line
+		// Check if all points are at the same side of line with crossproduct of line and a point
 		vector<double> crossProducts;
 
 		for (int a = 0; a < polygon.size(); a++)
@@ -42,7 +43,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 			crossProducts.push_back(crossProd);		
 		}		
 
-		//Count amount of smaller, bigger and equal Y axis values on line
+		// Count amount of smaller, bigger and equal with 0 crossproducts
 		int countOfSmaller = 0;
 		int countOfBigger = 0;
 		int countOfEqual = 0;
@@ -63,7 +64,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 			}
 		}
 
-		// If smalle and equal sum or bigger and equal sum are the size of all the points
+		// If smaller and equal sum or bigger and equal sum are the size of all the points
 		// We can expect that all the points are on the same side of line
 		int smallerYValues = countOfSmaller + countOfEqual;
 		int biggerYValues = countOfBigger + countOfEqual;
@@ -79,6 +80,11 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 	}
 
 	return isConvex;
+}
+
+vector<Vector> ConvexPolygon::getPolygon()
+{
+	return _polygon;
 }
 
 ConvexPolygon::ConvexPolygon(vector<Vector> polygon)

@@ -169,10 +169,10 @@ int main()
 	//-----
 	// CONVEX POLYGON TEST
 	//-----
-	string convexPolyString = "3.16,6.12 4.02,7.05 4.08,8.3 3.32,9.31 2.09,9.59 0.97,9.02 0.48,7.68 0.85,6.65 1.91,5.97";
+	string convexPolyString = "10.66,3.2 7,3 10.34,5.42 8.86,1.16 7,6";
 	vector<Vector> convexPolygon = Mutations::mutateVectorsStringToStdVector(convexPolyString);
-	bool isConvex = ConvexPolygon::isConvex(convexPolygon);
-	cout << isConvex << endl;
+	ConvexPolygon poly(convexPolygon);
+	//bool isConvex = ConvexPolygon::isConvex(convexPolygon);	
 	//-----
 	//test end
 	//-----
