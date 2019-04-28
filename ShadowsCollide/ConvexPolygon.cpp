@@ -1,7 +1,6 @@
 #include "pch.h"
 #include <iostream>
 #include <vector>
-#include <stdexcept>
 #include "Vector.h"
 #include "Line.h"
 #include "ConvexPolygon.h"
@@ -82,7 +81,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 	return isConvex;
 }
 
-vector<Vector> ConvexPolygon::getPolygon()
+vector<Vector> ConvexPolygon::getVectors()
 {
 	return _polygon;
 }

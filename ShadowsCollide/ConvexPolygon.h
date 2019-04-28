@@ -14,6 +14,6 @@ private:
 	void setPolygon(vector<Vector>);
 public:
 	static bool isConvex(vector<Vector> polygon);
-	vector<Vector> getPolygon();
+	vector<Vector> getVectors();
 	ConvexPolygon(vector<Vector> polygon);
 };
