@@ -10,4 +10,5 @@ class ArithmeticalOperations
 public:
 	static double calculateSlope(Vector, Vector);
 	static double distanceOfPoints(Vector, Vector);
+	static double getCrossProduct(Vector lineStart, Vector lineEnd, Vector point);
 };

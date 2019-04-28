@@ -13,7 +13,7 @@ void ConvexPolygon::setPolygon(vector<Vector> polygon)
 	_polygon = polygon;
 }
 
-bool ConvexPolygon::testConvexity(vector<Vector> polygon)
+bool ConvexPolygon::isConvex(vector<Vector> polygon)
 {
 	bool isConvex = false;
 
@@ -32,14 +32,14 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 		Line side(p1, p2);
 
 		// Check if all points are at the same side of line
-		vector<double> yVectorsOnLine;
+		vector<double> crossProducts;
 
 		for (int a = 0; a < polygon.size(); a++)
 		{
 			Vector p = polygon.at(a);
-			double y = side.slope() * (p.x - p1.x) + p1.y;			
+			double crossProd = ArithmeticalOperations::getCrossProduct(p1, p2, p);
 
-			yVectorsOnLine.push_back(y);		
+			crossProducts.push_back(crossProd);		
 		}		
 
 		//Count amount of smaller, bigger and equal Y axis values on line
@@ -47,17 +47,17 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 		int countOfBigger = 0;
 		int countOfEqual = 0;
 		
-		for (auto& yPos : yVectorsOnLine)
+		for (auto& prod : crossProducts)
 		{
-			if (yPos > p1.y)
+			if (prod > 0)
 			{
 				countOfBigger++;
 			} 
-			else if (yPos < p1.y)
+			else if (prod < 0)
 			{
 				countOfSmaller++;
 			}
-			else if (yPos == p1.y)
+			else if (prod == 0)
 			{
 				countOfEqual++;
 			}
@@ -68,7 +68,7 @@ bool ConvexPolygon::testConvexity(vector<Vector> polygon)
 		int smallerYValues = countOfSmaller + countOfEqual;
 		int biggerYValues = countOfBigger + countOfEqual;
 
-		if (smallerYValues == yVectorsOnLine.size() || biggerYValues == yVectorsOnLine.size())
+		if (smallerYValues == crossProducts.size() || biggerYValues == crossProducts.size())
 		{
 			isConvex = true;
 		}

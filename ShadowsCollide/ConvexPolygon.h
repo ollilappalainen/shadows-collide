@@ -13,6 +13,6 @@ private:
 	vector<Vector> _polygon;
 	void setPolygon(vector<Vector>);
 public:
-	static bool testConvexity(vector<Vector> polygon);
+	static bool isConvex(vector<Vector> polygon);
 	ConvexPolygon(vector<Vector> polygon);
 };
