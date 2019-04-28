@@ -18,7 +18,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 {
 	bool isConvex = false;
 
-	for (int i = 0; i < polygon.size(); i++)
+	for (size_t i = 0; i < polygon.size(); i++)
 	{
 		// Form line iteratively from every pair of vectors in polygon
 		int next = i + 1;
@@ -35,7 +35,7 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 		// Check if all points are at the same side of line with crossproduct of line and a point
 		vector<double> crossProducts;
 
-		for (int a = 0; a < polygon.size(); a++)
+		for (size_t a = 0; a < polygon.size(); a++)
 		{
 			Vector p = polygon.at(a);
 			double crossProd = ArithmeticalOperations::getCrossProduct(p1, p2, p);

@@ -70,62 +70,6 @@ bool isAABB(const vector<Vector> vectors)
 	return isAABB;
 }
 
-bool isConvexPolygon(const vector<Vector> vectors)
-{
-	// todo
-	bool isConvex = false;
-
-	vector<double> slopes;
-	for (int i = 0; i < vectors.size(); i++)
-	{
-		int maxIndex = vectors.size() - 1;		
-		int first = i;
-		int last = first == 0 ? maxIndex : first - 1;
-		int second = first == maxIndex ? 0 : first + 1;
-
-		//double slope1 = ArithmeticalOperations::calculateSlope(vectors.at(last), vectors.at(first));
-		double slope2 = ArithmeticalOperations::calculateSlope(vectors.at(first), vectors.at(second));
-		
-		//slopes.push_back(slope1);
-		slopes.push_back(slope2);
-
-		// figure this out..????
-		/*int vectorsLastIndex = vectors.size() - 1;
-		int middlePoint = i + 1;
-		int endPoint1 = middlePoint - 1;
-		int endPoint2 = middlePoint + 1;
-
-		if (i == vectors.size())
-		{
-			middlePoint = 0;
-			endPoint2 = 1;
-		}
-		else if (middlePoint == 0)
-		{
-			endPoint1 = vectorsLastIndex;
-		}
-		else if (middlePoint == vectorsLastIndex)
-		{
-			endPoint2 = 0;
-		}
-
-		Vector p1 = vectors.at(middlePoint);
-		Vector p2 = vectors.at(endPoint1);
-		Vector p3 = vectors.at(endPoint2);
-
-		float dx21 = p2.x - p1.x;
-		float dx31 = p3.x - p1.x;
-		float dy21 = p2.y - p1.y;
-		float dy31 = p3.y - p1.y;
-		float m12 = sqrt(dx21*dx21 + dy21 * dy21);
-		float m13 = sqrt(dx31*dx31 + dy31 * dy31);
-		float theta = acos((dx21*dx31 + dy21 * dy31) / (m12 * m13));*/
-	}
-
-	slopes;
-	return isConvex;
-}
-
 bool isOBB(const vector<Vector> vectors)
 {
 	// todo
