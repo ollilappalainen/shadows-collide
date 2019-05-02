@@ -10,6 +10,9 @@ using namespace std;
 
 class SATTest
 {
-public:
+private:
+	static vector<Vector> getProjectionsOfPolygon(Vector, Vector, ConvexPolygon);
+	static bool separatingAxisTest(ConvexPolygon, ConvexPolygon);
+public:	
 	static Collision testSATCollision(ConvexPolygon, ConvexPolygon);
 };

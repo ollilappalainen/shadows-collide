@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Vector.h"
+#include "Line.h"
 #include "ArithmeticalOperations.h"
 #include <iostream>
 
@@ -31,4 +32,17 @@ double ArithmeticalOperations::getCrossProduct(Vector lineStart, Vector lineEnd,
 	v2.y = lineEnd.y - point.y;
 
 	return v1.x * v2.y - v1.y * v2.x;
+}
+
+Vector ArithmeticalOperations::getProjectionOfPoint(Vector lineP1, Vector lineP2, Vector pointToProject)
+{
+	Line line(lineP1, lineP2);
+	double slope = line.slope();
+	double eq = lineP1.y - (slope * lineP1.x);
+	Vector projection;
+
+	projection.x = (slope * pointToProject.y + pointToProject.x - slope * eq) / (slope * slope + 1);
+	projection.y = (slope * slope * pointToProject.y + slope * pointToProject.x + eq) / (slope * slope + 1);
+
+	return projection;
 }

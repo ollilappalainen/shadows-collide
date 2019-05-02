@@ -10,6 +10,7 @@
 #include "Circle.h"
 #include "CircleTest.h"
 #include "ConvexPolygon.h"
+#include "SATTest.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -117,6 +118,19 @@ int main()
 	vector<Vector> convexPolygon = Mutations::mutateVectorsStringToStdVector(convexPolyString);
 	ConvexPolygon poly(convexPolygon);
 	//bool isConvex = ConvexPolygon::isConvex(convexPolygon);	
+
+	//-----
+	//SAT TEST
+	//-----
+	string satString1 = "0.36,1.96 1.40,0.80 3.26,1.34 3,3 0.68,3.88";
+	string satString2 = "2.22,4.46 4.06,4.16 3.8,1.86 1.86,1.6 1.1,3.26";
+	vector<Vector> satVectors1 = Mutations::mutateVectorsStringToStdVector(satString1);
+	vector<Vector> satVectors2 = Mutations::mutateVectorsStringToStdVector(satString2);
+	ConvexPolygon satPoly1(satVectors1);
+	ConvexPolygon satPoly2(satVectors2);
+
+	Collision satCollision; 
+	satCollision = SATTest::testSATCollision(satPoly1, satPoly2);
 	//-----
 	//test end
 	//-----
