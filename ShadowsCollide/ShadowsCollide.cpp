@@ -9,8 +9,10 @@
 #include "Mutations.h"
 #include "Circle.h"
 #include "CircleTest.h"
+#include "PolygonVsCircleTest.h"
 #include "ConvexPolygon.h"
 #include "SATTest.h"
+#include "VectorValidation.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -18,13 +20,6 @@
 #include <math.h>
 
 using namespace std;
-
-int getArraySizeFromVectors(const string vectorString)
-{
-	size_t arraySize = count(vectorString.begin(), vectorString.end(), ' ') + 1;
-
-	return arraySize;
-}
 
 bool isAABB(const vector<Vector> vectors)
 {
@@ -71,103 +66,62 @@ bool isAABB(const vector<Vector> vectors)
 	return isAABB;
 }
 
-bool isOBB(const vector<Vector> vectors)
-{
-	// todo
-	bool isOBB = false;
-	   
-	return isOBB;
-}
-
-void validateVectors(string vectors)
-{
-	// todo
-}
-
 int main()
 {
 	string vectorsString;
-    cout << "Please enter a list of two or more X and Y vectors." << endl; 
+	vector<Vector> polygon1;
+	cout << "Please enter a list of three or more X and Y vectors." << endl;
 	cout << "Vectors must form a convex polygon." << endl;
 	cout << "Valid form: x,y x,y x,y ..." << endl;
 	cout << "Example: -4.46,12.71 2.61,12.52 5.21,10.57 -3.46,8.71" << endl;
 	cout << "Press CTRL + C to end program." << endl;
-	cout << "Vectors: ";
-	//getline(cin, vectorsString);
 
-	//int vectorsCount = getArraySizeFromVectors(vectorsString);
+	bool isValidString = false;
+	bool isValidVector = false;
+	bool isValid = false;
 
-	//-----
-	//test start
-	//	TEST CIRCLE COLLISION!!
-	//-----
-	string testString = "1.64,4.9 2.34,5.53 2.38,6.46 1.76,7.16 0.82,7.2 0.13,6.58 0.08,5.64 0.71,4.95";
-	vector<Vector> testPolygon = Mutations::mutateVectorsStringToStdVector(testString);
-	Circle testCircle(testPolygon);
-
-	string secondTest = "6.13,1.64 6.75,2.53 6.74,3.62 6.08,4.49 5.04,4.81 4.01,4.46 3.39,3.57 3.4,2.48 4.06,1.61 5.1,1.29";
-	vector<Vector> testPolygon2 = Mutations::mutateVectorsStringToStdVector(secondTest);
-	Circle testCircle2(testPolygon2);
-
-	Collision collision = CircleTest::testCircleCollision(testCircle, testCircle2);
-
-	//-----
-	// CONVEX POLYGON TEST
-	//-----
-	string convexPolyString = "10.66,3.2 7,3 10.34,5.42 8.86,1.16 7,6";
-	vector<Vector> convexPolygon = Mutations::mutateVectorsStringToStdVector(convexPolyString);
-	ConvexPolygon poly(convexPolygon);
-	//bool isConvex = ConvexPolygon::isConvex(convexPolygon);	
-
-	//-----
-	//SAT TEST
-	//-----
-	string satString1 = "-2.68,4.72 3.88,3.6 2.84,1.74 -0.26,0.44 -2.54,1.76";
-	string satString2 = "1.2,2.88 -0.64,1.58 -1,4";
-	vector<Vector> satVectors1 = Mutations::mutateVectorsStringToStdVector(satString1);
-	vector<Vector> satVectors2 = Mutations::mutateVectorsStringToStdVector(satString2);
-	ConvexPolygon satPoly1(satVectors1);
-	ConvexPolygon satPoly2(satVectors2);
-
-	Collision satCollision; 
-	satCollision = SATTest::testSATCollision(satPoly1, satPoly2);
-	//-----
-	//test end
-	//-----
-	int vectorsCount = 3;
-
-	if (vectorsCount > 1) {
-		const vector<Vector> polygon1 = Mutations::mutateVectorsStringToStdVector(vectorsString);
-
-		if (isAABB(polygon1))
-		{
-			cout << "Polygon is quadrangle" << endl;
-			cout << "Please enter another." << endl;
+	while (!isValid)
+	{
+		while (!isValid) {
 			cout << "Vectors: ";
-
 			getline(cin, vectorsString);
 
-			const vector<Vector> polygon2 = Mutations::mutateVectorsStringToStdVector(vectorsString);
-
-			if (isAABB(polygon2))
-			{
-				Collision collisionResult = AABBTest::testAABBCollision(polygon1, polygon2);
-
-				string collision = collisionResult.collision == true ? "TRUE" : "FALSE";
-
-				cout << "Collision: " << collision << endl;
-				cout << "Distance: " << collisionResult.distance << endl;
-			}
+			isValid = VectorValidation::validateString(vectorsString);
 		}
-		else
+
+		polygon1 = Mutations::mutateVectorsStringToStdVector(vectorsString);		
+		isValid = VectorValidation::validateVectors(polygon1);
+	}
+
+	/*
+	TODO: DETERMINE POLYGON TYPE
+	*/
+
+
+
+	if (isAABB(polygon1))
+	{
+		cout << "Polygon is quadrangle" << endl;
+		cout << "Please enter another." << endl;
+		cout << "Vectors: ";
+
+		getline(cin, vectorsString);
+
+		const vector<Vector> polygon2 = Mutations::mutateVectorsStringToStdVector(vectorsString);
+
+		if (isAABB(polygon2))
 		{
-			cout << "Please enter quadangle.." << endl;
-			cout << "Vectors: ";
-			getline(cin, vectorsString);
+			Collision collisionResult = AABBTest::testAABBCollision(polygon1, polygon2);
+
+			string collision = collisionResult.collision == true ? "TRUE" : "FALSE";
+
+			cout << "Collision: " << collision << endl;
+			cout << "Distance: " << collisionResult.distance << endl;
 		}
 	}
-	else {
-		cout << "Please enter more than one vector." << endl;
+	else
+	{
+		cout << "Please enter quadangle.." << endl;
 		cout << "Vectors: ";
 		getline(cin, vectorsString);
 	}
@@ -187,3 +141,4 @@ int main()
 //   4. Use the Error List window to view errors
 //   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
 //   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+

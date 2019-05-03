@@ -51,6 +51,12 @@
     <ClInclude Include="Projection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PolygonVsCircleTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorValidation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -87,6 +93,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SATTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PolygonVsCircleTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorValidation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

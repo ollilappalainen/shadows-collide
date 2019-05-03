@@ -160,9 +160,11 @@
     <ClInclude Include="Mutations.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ConvexPolygon.h" />
+    <ClInclude Include="PolygonVsCircleTest.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SATTest.h" />
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="VectorValidation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AABBTest.cpp" />
@@ -179,9 +181,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ConvexPolygon.cpp" />
+    <ClCompile Include="PolygonVsCircleTest.cpp" />
     <ClCompile Include="SATTest.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="ShadowsCollide.cpp" />
+    <ClCompile Include="VectorValidation.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
