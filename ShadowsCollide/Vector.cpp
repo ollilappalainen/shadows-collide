@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "Vector.h"
+#include <math.h>
 
-double Vector::dotProduct(Vector vector)
+using namespace std;
+
+double Vector::magnitude()
 {
-	return x * vector.x + y * vector.y;
+	return sqrt(x * x + y * y);
 }

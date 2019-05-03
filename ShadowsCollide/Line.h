@@ -11,9 +11,10 @@ class Line
 private:
 	Vector _p1;
 	Vector _p2;
-	Vector _center;
+	Vector _center;	
 	double _slope;
 	double _length;
+	void setPoints(Vector, Vector);
 	void setSlope(double);
 	void setCenter(Vector);
 	void setLength(double);
@@ -23,4 +24,5 @@ public:
 	double slope();
 	Vector center();
 	double length();
+	Vector xy();
 };

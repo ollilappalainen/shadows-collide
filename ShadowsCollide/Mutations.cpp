@@ -43,3 +43,15 @@ vector<Vector> Mutations::mutateVectorsStringToStdVector(string vectorString)
 
 	return vectors;
 }
+
+Vector Mutations::getNormalizedVector(Vector vector)
+{
+	double x = vector.x / vector.magnitude();
+	double y = vector.y / vector.magnitude();
+
+	Vector normalized;
+	normalized.x = x;
+	normalized.y = y;
+
+	return normalized;
+}

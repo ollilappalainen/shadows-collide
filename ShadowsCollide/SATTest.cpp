@@ -2,78 +2,89 @@
 #include <iostream>
 #include <vector>
 #include "Vector.h"
+#include "Projection.h"
 #include "Line.h"
 #include "Collision.h"
 #include "ConvexPolygon.h"
 #include "ArithmeticalOperations.h"
 #include "SATTest.h"
+#include "Mutations.h"
 
 using namespace std;
-
-vector<Vector> SATTest::getProjectionsOfPolygon(Vector lineP1, Vector lineP2, ConvexPolygon polygon)
-{
-	vector<Vector> vectors = polygon.getVectors();
-	unsigned int vectorsCount = vectors.size();
-	vector<Vector> projections;
-
-	for (size_t a = 0; a < vectorsCount; a++)
-	{
-		Vector pointToProject = vectors.at(a);
-		Vector projection = ArithmeticalOperations::getProjectionOfPoint(lineP1, lineP2, pointToProject);
-		projections.push_back(projection);
-	}
-
-	return projections;
-}
-
-bool SATTest::separatingAxisTest(ConvexPolygon polygon1, ConvexPolygon polygon2)
-{
-	vector<Vector> vectors = polygon1.getVectors();
-	unsigned int vectorsCount = vectors.size();	
-	bool hasSeparatingAxis = true;
-
-	for (size_t i = 0; i < vectorsCount; i++)
-	{
-		unsigned int next = i + 1;
-
-		if (i == vectorsCount - 1)
-		{
-			next = 0;
-		}
-
-		Vector lineP1, lineP2;
-		vector<Vector> projections1, projections2;
-
-		lineP1 = vectors.at(i);
-		lineP2 = vectors.at(next);
-
-		projections1 = getProjectionsOfPolygon(lineP1, lineP2, polygon1);
-		projections2 = getProjectionsOfPolygon(lineP1, lineP2, polygon2);
-
-		for (size_t a = 0; a < vectors.size(); a++)
-		{
-			double projection = vectors.at(a).dotProduct(lineP1);
-			// TODO
-		}
-
-		if (!hasSeparatingAxis) {
-			break;
-		}
-	}
-
-	return hasSeparatingAxis;
-}
 
 Collision SATTest::testSATCollision(ConvexPolygon polygon1, ConvexPolygon polygon2)
 {
 	Collision collision;
-	collision.collision = false;
+	collision.collision = true;
 	collision.distance = -DBL_MAX;
 
-	bool test1 = separatingAxisTest(polygon1, polygon2);
-	bool test2 = separatingAxisTest(polygon2, polygon1);
+	vector<Line> edges1 = polygon1.getEdges();
+	vector<Line> edges2 = polygon2.getEdges();
 
-	collision.collision = !test1 && !test2;
+	// Iterate through all edges of both polygons
+	for (size_t i = 0; i < edges1.size() + edges2.size(); i++)
+	{
+		Line edge = edges1.at(0);
+
+		if (i < edges1.size())
+		{
+			edge = edges1.at(i);
+		}
+		else
+		{
+			edge = edges2.at(i - edges1.size());
+		}
+
+		// Set normalized perpendicular axis
+		Vector axis = edge.xy();
+		Vector perp;
+		perp.x = -axis.y;
+		perp.y = axis.x;
+		Vector normal =	Mutations::getNormalizedVector(perp);
+
+		Projection projection1 = getProjectionsOfPolygon(normal, polygon1);
+		Projection projection2 = getProjectionsOfPolygon(normal, polygon2);
+
+		if (projection1.min < projection2.min)
+		{
+			collision.distance = projection2.min - projection1.max;
+		}
+		else {
+			collision.distance = projection1.min - projection2.max;
+		}
+
+		if (projection1.max < projection2.min || projection1.min > projection2.max)
+		{
+			collision.collision = false;
+			break;
+		}
+	}
 
 	return collision;
+}
+
+Projection SATTest::getProjectionsOfPolygon(Vector axis, ConvexPolygon polygon)
+{
+	vector<Vector> vectors = polygon.getVectors();
+	double dp = ArithmeticalOperations::getDotProduct(axis, vectors.at(0));
+	double min = dp;
+	double max = dp;
+
+	for (size_t a = 0; a < vectors.size(); a++)
+	{
+		dp = ArithmeticalOperations::getDotProduct(axis, vectors.at(a));
+
+		if (dp < min) {
+			min = dp;
+		}
+		else if (dp > max) {
+			max = dp;
+		}
+	}
+
+	Projection projection;
+	projection.min = min;
+	projection.max = max;
+
+	return projection;
 }

@@ -122,8 +122,8 @@ int main()
 	//-----
 	//SAT TEST
 	//-----
-	string satString1 = "0.36,1.96 1.40,0.80 3.26,1.34 3,3 0.68,3.88";
-	string satString2 = "2.22,4.46 4.06,4.16 3.8,1.86 1.86,1.6 1.1,3.26";
+	string satString1 = "-2.68,4.72 3.88,3.6 2.84,1.74 -0.26,0.44 -2.54,1.76";
+	string satString2 = "1.2,2.88 -0.64,1.58 -1,4";
 	vector<Vector> satVectors1 = Mutations::mutateVectorsStringToStdVector(satString1);
 	vector<Vector> satVectors2 = Mutations::mutateVectorsStringToStdVector(satString2);
 	ConvexPolygon satPoly1(satVectors1);

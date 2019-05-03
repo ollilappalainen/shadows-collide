@@ -81,12 +81,41 @@ bool ConvexPolygon::isConvex(vector<Vector> polygon)
 	return isConvex;
 }
 
+void ConvexPolygon::setEdges(vector<Vector> polygon)
+{	
+	vector<Line> edges;
+
+	for (size_t i = 0; i < polygon.size(); i++)
+	{
+		size_t next = i + 1;
+
+		if (i == polygon.size() - 1)
+		{
+			next = 0;
+		}
+		
+		Vector p1 = polygon.at(i);
+		Vector p2 = polygon.at(next);
+		Line edge(p1, p2);
+
+		edges.push_back(edge);
+	}
+
+	_edges = edges;
+}
+
 vector<Vector> ConvexPolygon::getVectors()
 {
 	return _polygon;
 }
 
+vector<Line> ConvexPolygon::getEdges()
+{
+	return _edges;
+}
+
 ConvexPolygon::ConvexPolygon(vector<Vector> polygon)
 {
 	setPolygon(polygon);
+	setEdges(polygon);
 }

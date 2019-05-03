@@ -46,3 +46,8 @@ Vector ArithmeticalOperations::getProjectionOfPoint(Vector lineP1, Vector lineP2
 
 	return projection;
 }
+
+double ArithmeticalOperations::getDotProduct(Vector axis, Vector toProject)
+{
+	return axis.x * toProject.x  + axis.y * toProject.y;
+}

@@ -160,6 +160,7 @@
     <ClInclude Include="Mutations.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ConvexPolygon.h" />
+    <ClInclude Include="Projection.h" />
     <ClInclude Include="SATTest.h" />
     <ClInclude Include="Vector.h" />
   </ItemGroup>

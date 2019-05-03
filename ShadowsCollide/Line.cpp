@@ -15,6 +15,13 @@ Line::Line(Vector p1, Vector p2)
 	setSlope(slope);
 	setLength(length);
 	setCenter(center);
+	setPoints(p1, p2);
+}
+
+void Line::setPoints(Vector p1, Vector p2)
+{
+	_p1 = p1;
+	_p2 = p2;
 }
 
 void Line::setSlope(double slope)
@@ -45,6 +52,11 @@ double Line::length()
 Vector Line::center()
 {
 	return _center;
+}
+
+Vector Line::xy()
+{
+	return _p1;
 }
 
 Vector Line::calculateCenter(Vector p1, Vector p2)
