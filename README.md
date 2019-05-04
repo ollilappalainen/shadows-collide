@@ -1,7 +1,7 @@
 # ShadowsCollide
 2D collision detection software.
 
-##Features
+## Features
 * Collision test for
     * AABB - AABB
     * Circle - Circle
@@ -10,7 +10,7 @@
 * UI for inputting vectors
 * Light validation for vector string and std::vector
 
-##Known issues
+## Known issues
 * Memory optimization
 * Polygon containment might not work, tested only with Separating Axis Test
 * Program exit signals are not handled correctly
