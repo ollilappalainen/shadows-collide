@@ -38,7 +38,7 @@ Collision testCollision(vector<Vector> polygon1, vector<Vector> polygon2)
 		collision = CircleTest::testCircleCollision(polygon1, polygon2);
 	}
 	else {
-		cout << "Operating Separating Axis test for arbitary convex polygons.." << endl;
+		cout << "Operating Separating Axis test for arbitrary convex polygons.." << endl;
 		collision = SATTest::testSATCollision(polygon1, polygon2);
 	}
 
