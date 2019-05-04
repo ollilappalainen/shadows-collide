@@ -1,5 +1,9 @@
 # ShadowsCollide
-2D collision detection software.
+2D collision detection software for windows.
+
+## Requirements for build
+* Windows PC
+* Microsoft Visual Studio
 
 ## Features
 * Collision test for
@@ -17,3 +21,4 @@
 * AABB collision test doesn't handle equal vectors as colliding vectors
 * AABB collision doesn't show distance as negative value if collision is true
 * Cicle - Convex Polygon test does not work properly and is not used in main program
+* CMake not implemented for cross platform compilation
