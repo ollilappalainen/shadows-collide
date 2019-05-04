@@ -23,6 +23,10 @@ Collision PolygonVsCircleTest::testCollision(ConvexPolygon polygon, Circle circl
 
 	for (size_t i = 0; i < vectors.size(); i++)
 	{
+
+		
+		// TODO
+		// Does not properly determine distance or collision
 		Vector vector = vectors.at(i);
 		double fromPointToCenter = ArithmeticalOperations::distanceOfPoints(vector, circle.center());
 		double distance = fromPointToCenter - circle.radius();
