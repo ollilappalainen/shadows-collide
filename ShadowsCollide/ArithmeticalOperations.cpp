@@ -51,3 +51,16 @@ double ArithmeticalOperations::getDotProduct(Vector axis, Vector toProject)
 {
 	return axis.x * toProject.x  + axis.y * toProject.y;
 }
+
+Vector ArithmeticalOperations::calculateCenterOfCircle(Vector p1, Vector p2, Vector p3)
+{
+	Vector center;
+	Line l1(p1, p2);
+	Line l2(p3, p2);
+	double l1Slope = l1.slope();
+	double l2Slope = l2.slope();
+	center.x = (l1Slope * l2Slope * (p1.y - p3.y) + l2Slope * (p1.x + p2.x) - l1Slope * (p2.x + p3.x)) / (2 * (l2Slope - l1Slope));
+	center.y = -1 * (center.x - (p1.x + p2.x) / 2) / l1Slope + (p1.y + p2.y) / 2;
+
+	return center;
+}

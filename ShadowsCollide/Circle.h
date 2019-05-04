@@ -22,4 +22,5 @@ public:
 	Circle(vector<Vector> polygon);
 	Vector center();
 	double radius();
+	static bool isCircle(vector<Vector>);
 };

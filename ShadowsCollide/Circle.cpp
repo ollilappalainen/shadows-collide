@@ -45,17 +45,11 @@ double Circle::radius()
 }
 
 Vector Circle::calculateCenter()
-{
-	Vector center;
+{	
 	Vector p1 = _polygon.at(0);
 	Vector p2 = _polygon.at(1);
 	Vector p3 = _polygon.at(2);
-	Line l1(p1, p2);
-	Line l2(p3, p2);
-	double l1Slope = l1.slope();
-	double l2Slope = l2.slope();
-	center.x = (l1Slope * l2Slope * (p1.y - p3.y) + l2Slope * (p1.x + p2.x) - l1Slope * (p2.x + p3.x)) / (2 * (l2Slope - l1Slope));
-	center.y = -1 * (center.x - (p1.x + p2.x) / 2) / l1Slope + (p1.y + p2.y) / 2;
+	Vector center = ArithmeticalOperations::calculateCenterOfCircle(p1, p2, p3);
 
 	return center;
 }
@@ -65,3 +59,46 @@ double Circle::calculateRadius()
 	return ArithmeticalOperations::distanceOfPoints(_center, _polygon.at(0));
 }
 
+bool Circle::isCircle(vector<Vector> polygon)
+{
+	size_t vectorCount = polygon.size();
+
+	if (vectorCount < 8)
+	{
+		return false;
+	}
+
+	Vector center = ArithmeticalOperations::calculateCenterOfCircle(polygon.at(0), polygon.at(1), polygon.at(2));
+	double lastRadius = ArithmeticalOperations::distanceOfPoints(center, polygon.at(0));
+
+	// Round the initial value for last radius to 0.1
+	lastRadius = (int)(lastRadius * 10 + .5);
+	lastRadius = (double)lastRadius / 10;
+
+	bool isCircle = false;
+
+	for (size_t i = 0; i < vectorCount; i++)
+	{		
+		Vector p1 = polygon.at(i);
+
+		double radius = ArithmeticalOperations::distanceOfPoints(center, p1);
+
+		// Round radius width to 0.1 decimals
+		radius = (int)(radius * 10 + .5);
+		radius = (double)radius / 10;
+
+		// Check mach with previous radious with 0.1 decimal threshold
+		if (radius == lastRadius || (radius + 0.1) == lastRadius || (radius - 0.1) == lastRadius)
+		{
+			isCircle = true;
+		} 
+		else {
+			isCircle = false;
+			break;
+		}
+
+		lastRadius = radius;
+	}
+
+	return isCircle;
+}

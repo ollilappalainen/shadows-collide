@@ -162,6 +162,7 @@
     <ClInclude Include="ConvexPolygon.h" />
     <ClInclude Include="PolygonVsCircleTest.h" />
     <ClInclude Include="Projection.h" />
+    <ClInclude Include="Quad.h" />
     <ClInclude Include="SATTest.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="VectorValidation.h" />
@@ -182,6 +183,7 @@
     </ClCompile>
     <ClCompile Include="ConvexPolygon.cpp" />
     <ClCompile Include="PolygonVsCircleTest.cpp" />
+    <ClCompile Include="Quad.cpp" />
     <ClCompile Include="SATTest.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="ShadowsCollide.cpp" />
