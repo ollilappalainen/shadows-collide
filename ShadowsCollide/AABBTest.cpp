@@ -123,10 +123,10 @@ Collision AABBTest::testAABBCollision(vector<Vector> polygon1, vector<Vector> po
 	double polygon2MinY = getMinY(polygon2);
 
 	if (
-		polygon1MinX < polygon2MaxX &&
-		polygon1MaxX > polygon2MinX &&
-		polygon1MinY < polygon2MaxY &&
-		polygon1MaxY > polygon2MinY
+		polygon1MinX <= polygon2MaxX &&
+		polygon1MaxX >= polygon2MinX &&
+		polygon1MinY <= polygon2MaxY &&
+		polygon1MaxY >= polygon2MinY
 		)
 	{
 		result.collision = true;
