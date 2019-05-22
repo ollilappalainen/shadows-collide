@@ -4,8 +4,6 @@
 #include "Vector.h"
 #include "Line.h"
 
-using namespace std;
-
 class Quad
 {
 private:

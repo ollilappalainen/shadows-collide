@@ -3,8 +3,6 @@
 #include "Vector.h"
 #include <iostream>
 
-using namespace std;
-
 class ArithmeticalOperations
 {
 public:

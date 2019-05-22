@@ -3,8 +3,6 @@
 #include <vector>
 #include "Vector.h"
 
-using namespace std;
-
 class VectorValidation
 {
 private:

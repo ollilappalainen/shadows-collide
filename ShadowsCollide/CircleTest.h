@@ -6,8 +6,6 @@
 #include <iostream>
 #include <vector>
 
-using namespace std;
-
 class CircleTest
 {
 public:

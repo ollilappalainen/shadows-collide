@@ -45,8 +45,33 @@ Collision testCollision(vector<Vector> polygon1, vector<Vector> polygon2)
 	return collision;
 }
 
+/*
+TEST FUNCTIONS
+*/
+Collision aabbTest() {
+	string aabbstring1 = "3,3 3,6 5,6 5,3";
+	string aabbstring2 = "6,3 6,6 9,6 9,3";
+	vector<Vector> aabbpol1 = Mutations::mutateVectorsStringToStdVector(aabbstring1);
+	vector<Vector> aabbpol2 = Mutations::mutateVectorsStringToStdVector(aabbstring2);
+
+	return AABBTest::testAABBCollision(aabbpol1, aabbpol2);
+}
+/*
+TEST FUNCTIONS END
+*/
+
 int main()
 {
+	/*
+	TESTS START
+	*/
+	Collision aabbTestCollision = aabbTest();
+
+
+	/*
+	TESTS END
+	*/
+
 	string vectorsString;
 	vector<Vector> polygon1;
 	vector<Vector> polygon2;
