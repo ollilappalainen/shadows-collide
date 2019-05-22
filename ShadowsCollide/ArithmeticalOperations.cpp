@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "Vector.h"
 #include "Line.h"
 #include "ArithmeticalOperations.h"
