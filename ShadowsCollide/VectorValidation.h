@@ -6,9 +6,9 @@
 class VectorValidation
 {
 private:
-	static bool validateLength(vector<Vector>);
-	static bool validateConvexity(vector<Vector>);
+	static bool validateLength(std::vector<Vector>);
+	static bool validateConvexity(std::vector<Vector>);
 public:
-	static bool validateString(string);
-	static bool validateVectors(vector<Vector>);	
+	static bool validateString(std::string);
+	static bool validateVectors(std::vector<Vector>);
 };

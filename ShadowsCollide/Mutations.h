@@ -7,7 +7,7 @@
 class Mutations
 {
 public:
-	static Vector mutateStringToVector(string);
-	static vector<Vector> mutateVectorsStringToStdVector(string vectorString);
+	static Vector mutateStringToVector(std::string);
+	static std::vector<Vector> mutateVectorsStringToStdVector(std::string vectorString);
 	static Vector getNormalizedVector(Vector);
 };

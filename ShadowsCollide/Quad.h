@@ -7,13 +7,13 @@
 class Quad
 {
 private:
-	vector<Vector> _polygon;
-	vector<Line> _edges;
-	void setPolygon(vector<Vector>);
-	void setEdges(vector<Vector>);
+	std::vector<Vector> _polygon;
+	std::vector<Line> _edges;
+	void setPolygon(std::vector<Vector>);
+	void setEdges(std::vector<Vector>);
 public:
-	static bool isAABB(vector<Vector>);
-	vector<Vector> getVectors();
-	vector<Line> getEdges();
-	Quad(vector<Vector>);
+	static bool isAABB(std::vector<Vector>);
+	std::vector<Vector> getVectors();
+	std::vector<Line> getEdges();
+	Quad(std::vector<Vector>);
 };

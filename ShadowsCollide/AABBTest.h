@@ -8,13 +8,13 @@
 class AABBTest
 {
 private:
-	static double getMaxX(vector<Vector> polygon);
-	static double getMaxY(vector<Vector> polygon);
-	static double getMinX(vector<Vector> polygon);
-	static double getMinY(vector<Vector> polygon);
+	static double getMaxX(std::vector<Vector>);
+	static double getMaxY(std::vector<Vector>);
+	static double getMinX(std::vector<Vector>);
+	static double getMinY(std::vector<Vector>);
 	static double calculateDistance(Vector, Vector);
-	static double getClosestPointsDistance(vector<Vector> polygon1, vector<Vector> polygon2);
+	static double getClosestPointsDistance(std::vector<Vector>, std::vector<Vector>);
 
 public:
-	static Collision testAABBCollision(vector<Vector> polygon1, vector<Vector> polygon2);
+	static Collision testAABBCollision(std::vector<Vector>, std::vector<Vector>);
 };

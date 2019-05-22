@@ -4,23 +4,23 @@
 #include "Quad.h"
 #include "ArithmeticalOperations.h"
 
-Quad::Quad(vector<Vector> polygon)
+Quad::Quad(std::vector<Vector> polygon)
 {
 	setPolygon(polygon);
 	setEdges(polygon);
 }
 
-void Quad::setPolygon(vector<Vector> polygon)
+void Quad::setPolygon(std::vector<Vector> polygon)
 {
 	_polygon = polygon;
 }
 
-vector<Vector> Quad::getVectors()
+std::vector<Vector> Quad::getVectors()
 {
 	return _polygon;
 }
 
-bool Quad::isAABB(vector<Vector> polygon)
+bool Quad::isAABB(std::vector<Vector> polygon)
 {
 	bool isAABB;
 
@@ -67,9 +67,9 @@ bool Quad::isAABB(vector<Vector> polygon)
 	return isAABB;
 }
 
-void Quad::setEdges(vector<Vector> polygon)
+void Quad::setEdges(std::vector<Vector> polygon)
 {
-	vector<Line> edges;
+	std::vector<Line> edges;
 
 	for (size_t i = 0; i < polygon.size(); i++)
 	{
@@ -90,7 +90,7 @@ void Quad::setEdges(vector<Vector> polygon)
 	_edges = edges;
 }
 
-vector<Line> Quad::getEdges()
+std::vector<Line> Quad::getEdges()
 {
 	return _edges;
 }

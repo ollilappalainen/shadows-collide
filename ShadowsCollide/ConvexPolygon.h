@@ -8,13 +8,13 @@
 class ConvexPolygon
 {
 private:
-	vector<Vector> _polygon;
-	vector<Line> _edges;
-	void setPolygon(vector<Vector>);
-	void setEdges(vector<Vector>);
+	std::vector<Vector> _polygon;
+	std::vector<Line> _edges;
+	void setPolygon(std::vector<Vector>);
+	void setEdges(std::vector<Vector>);
 public:
-	static bool isConvex(vector<Vector> polygon);
-	vector<Line> getEdges();
-	vector<Vector> getVectors();
-	ConvexPolygon(vector<Vector> polygon);
+	static bool isConvex(std::vector<Vector> polygon);
+	std::vector<Line> getEdges();
+	std::vector<Vector> getVectors();
+	ConvexPolygon(std::vector<Vector> polygon);
 };
