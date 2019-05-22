@@ -58,6 +58,8 @@ Collision SATTest::testSATCollision(ConvexPolygon polygon1, ConvexPolygon polygo
 			collision.collision = false;
 			break;
 		}
+
+		if (collision.collision) collision.distance = 0;
 	}
 
 	return collision;

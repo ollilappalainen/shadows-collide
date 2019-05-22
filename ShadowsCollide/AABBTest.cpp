@@ -132,7 +132,7 @@ Collision AABBTest::testAABBCollision(vector<Vector> polygon1, vector<Vector> po
 		result.collision = true;
 	}
 
-	result.distance = getClosestPointsDistance(polygon1, polygon2);
+	result.distance = result.collision ? 0 : getClosestPointsDistance(polygon1, polygon2);
 
 	return result;
 }
